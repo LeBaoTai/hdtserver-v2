@@ -19,8 +19,7 @@
     "drizzle-orm": "^0.36.4",
     "drizzle-zod": "^0.5.1",
     "express": "^4.21.1",
-    "pg": "^8.13.1",
-    "serverless-http": "^3.2.0"
+    "pg": "^8.13.1"
   },
   "devDependencies": {
     "@types/express": "^5.0.0",
