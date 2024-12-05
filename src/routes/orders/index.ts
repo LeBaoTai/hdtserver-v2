@@ -8,7 +8,7 @@ import {
   listOrders,
   updateOrder,
   updateProductQuantity
-} from './ordersController'
+} from './ordersController.js'
 
 const router = Router()
 

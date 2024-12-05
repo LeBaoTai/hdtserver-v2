@@ -1,8 +1,8 @@
 import { eq } from 'drizzle-orm'
 import { Request, Response } from 'express'
-import { db } from '../../db'
-import { categoriesTable } from '../../db/categoriesSchema'
-import { productsTable } from '../../db/productsSchema'
+import { db } from '../../db/index.js'
+import { categoriesTable } from '../../db/categoriesSchema.js'
+import { productsTable } from '../../db/productsSchema.js'
 
 export async function listCategories(req: Request, res: Response) {
   try {

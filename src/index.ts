@@ -1,7 +1,7 @@
 import express, { json, urlencoded } from 'express'
-import categoriesRoutes from './routes/categories'
-import ordersRoutes from './routes/orders'
-import productRoutes from './routes/products'
+import categoriesRoutes from './routes/categories/index.js'
+import ordersRoutes from './routes/orders/index.js'
+import productRoutes from './routes/products/index.js'
 import serverless from 'serverless-http'
 
 const port = 3000
