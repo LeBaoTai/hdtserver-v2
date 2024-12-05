@@ -1,10 +1,18 @@
 {
   "version": 2,
-  "builds": [{ "src": "src/index.js", "use": "@vercel/node" }],
+  "builds": [
+    {
+      "src": "src/index.ts",
+      "use": "@vercel/node"
+    }
+  ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "src/index.js"
+      "dest": "src/index.ts"
     }
-  ]
+  ],
+  "env": {
+    "DATABASE_URL": "postgresql://admin:Rgox8C4KrMhz@ep-nameless-hall-a1i8y42m-pooler.ap-southeast-1.aws.neon.tech/hdt?sslmode=require"
+  }
 }
