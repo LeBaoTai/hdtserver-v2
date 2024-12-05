@@ -1,7 +1,8 @@
-import express, { json, Router, urlencoded } from 'express'
-import productRoutes from './routes/products'
-import ordersRoutes from './routes/orders'
+import express, { json, urlencoded } from 'express'
 import categoriesRoutes from './routes/categories'
+import ordersRoutes from './routes/orders'
+import productRoutes from './routes/products'
+import serverless from 'serverless-http'
 
 const port = 3000
 
@@ -17,6 +18,10 @@ app.use('/products', productRoutes)
 app.use('/orders', ordersRoutes)
 app.use('/categories', categoriesRoutes)
 
-app.listen(port, () => {
-  console.log(`Server have stated with port ${port}`)
-})
+if (process.env.NODE_ENV === 'dev') {
+  app.listen(port, () => {
+    console.log(`Server have stated with port ${port}`)
+  })
+}
+
+export const handler = serverless(app);
