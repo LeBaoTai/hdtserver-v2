@@ -1,0 +1,1 @@
+ALTER TABLE "orders" ALTER COLUMN "invoicedAt" SET DATA TYPE text;
