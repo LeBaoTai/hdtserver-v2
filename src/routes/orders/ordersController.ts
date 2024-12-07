@@ -39,7 +39,7 @@ export async function updateOrder(req: Request, res: Response) {
     }
 
     // Update order details
-    if (name || phone || status) {
+    if (name || phone || status || invoicedAt) {
       await db
         .update(ordersTable)
         .set({ name, phone, status, invoicedAt })
