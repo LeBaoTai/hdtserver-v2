@@ -48,13 +48,14 @@ export async function updateOrder(req: Request, res: Response) {
 
     // Handle order items (if provided)
     if (Array.isArray(items) && items.length > 0) {
-      const newItems = items.map((item: any) => ({
-        orderId,
-        productId: item.productId,
-        quantity: item.quantity
-      }))
-
-      await db.insert(orderItemsTable).values(newItems)
+      for (const [index, item] of items.entries()) {
+        await new Promise(resolve => setTimeout(resolve, index * 100)) // 100 ms delay
+        await db.insert(orderItemsTable).values({
+          orderId,
+          productId: item.productId,
+          quantity: item.quantity
+        })
+      }
     }
 
     res.status(200).send({ message: 'Order updated successfully' })
