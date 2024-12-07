@@ -1,11 +1,12 @@
 import { integer, pgTable, timestamp, uuid, varchar } from 'drizzle-orm/pg-core'
-import { productsTable } from './productsSchema.js'
+import { productsTable } from './productsSchema'
 
 export const ordersTable = pgTable('orders', {
   id: uuid().primaryKey().defaultRandom(),
   name: varchar({ length: 50 }).notNull(),
   phone: varchar({ length: 50 }).notNull(),
   createdAt: timestamp().notNull().defaultNow(),
+  invoicedAt: timestamp(),
   status: varchar({ length: 50 }).notNull().default('New')
 })
 

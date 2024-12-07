@@ -1,5 +1,5 @@
 import { doublePrecision, pgTable, uuid, varchar } from 'drizzle-orm/pg-core'
-import { categoriesTable } from './categoriesSchema.js'
+import { categoriesTable } from './categoriesSchema'
 
 export const productsTable = pgTable('products', {
   id: uuid().primaryKey().defaultRandom(),

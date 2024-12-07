@@ -25,7 +25,7 @@ export async function listOrders(req: Request, res: Response) {
 export async function updateOrder(req: Request, res: Response) {
   try {
     const orderId = req.params.id // UUID
-    const { name, phone, status, items } = req.body
+    const { name, phone, status, items, invoicedAt } = req.body
 
     // Validate if the order exists
     const order = await db
@@ -42,7 +42,7 @@ export async function updateOrder(req: Request, res: Response) {
     if (name || phone || status) {
       await db
         .update(ordersTable)
-        .set({ name, phone, status })
+        .set({ name, phone, status, invoicedAt })
         .where(eq(ordersTable.id, orderId))
     }
 
