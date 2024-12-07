@@ -1,10 +1,4 @@
-import {
-  integer,
-  pgTable,
-  timestamp,
-  uuid,
-  varchar
-} from 'drizzle-orm/pg-core'
+import { integer, pgTable, timestamp, uuid, varchar } from 'drizzle-orm/pg-core'
 import { productsTable } from './productsSchema.js'
 
 export const ordersTable = pgTable('orders', {
@@ -23,5 +17,6 @@ export const orderItemsTable = pgTable('order_items', {
   productId: uuid()
     .references(() => productsTable.id)
     .notNull(),
-  quantity: integer().notNull().default(1)
+  quantity: integer().notNull().default(1),
+  createdAt: timestamp().notNull().defaultNow()
 })

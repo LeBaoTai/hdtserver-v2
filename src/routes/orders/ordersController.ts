@@ -146,7 +146,8 @@ export async function getOrderDetails(req: Request, res: Response) {
         quantity: orderItemsTable.quantity,
         productId: productsTable.id,
         productName: productsTable.name,
-        sellPrice: productsTable.sellPrice
+        sellPrice: productsTable.sellPrice,
+        createdAt: orderItemsTable.createdAt
       })
       .from(orderItemsTable)
       .innerJoin(productsTable, eq(orderItemsTable.productId, productsTable.id))
