@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 import { db } from '../../db/index.js'
 import { orderItemsTable, ordersTable } from '../../db/ordersSchema.js'
-import { and, eq } from 'drizzle-orm'
+import { and, desc, eq } from 'drizzle-orm'
 import { productsTable } from '../../db/productsSchema.js'
 
 export async function createOrder(req: Request, res: Response) {
@@ -15,7 +15,13 @@ export async function createOrder(req: Request, res: Response) {
 
 export async function listOrders(req: Request, res: Response) {
   try {
-    const orders = await db.select().from(ordersTable)
+    const page = parseInt(req.query.page as string)
+    const perPage = 50
+    const offset = (page - 1) * perPage
+    const orders = await db
+      .select()
+      .from(ordersTable)
+      .orderBy(desc(ordersTable.createdAt))
     res.status(200).send(orders)
   } catch (e) {
     res.status(500).send({ message: e })

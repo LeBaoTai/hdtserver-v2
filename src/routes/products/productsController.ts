@@ -5,7 +5,16 @@ import { productsTable } from '../../db/productsSchema.js'
 
 export async function listProducts(req: Request, res: Response) {
   try {
-    const products = await db.select().from(productsTable)
+    const page = parseInt(req.query.page as string)
+    const perPage = 50
+    const offset = (page - 1) * perPage
+    const products = await db
+      .select()
+      .from(productsTable)
+      .limit(perPage)
+      .offset(offset)
+      .orderBy(productsTable.name)
+
     res.status(200).send(products)
   } catch (e) {
     res.status(500).send({ message: e })
